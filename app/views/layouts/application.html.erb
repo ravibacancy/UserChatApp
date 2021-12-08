@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class="ui grid">
+    <div class="row">
+      <div class="fourteen wide centered column">
+        <h2 class="ui header">
+          <i class="mail icon"></i>
+          <div class="content">
+            User Chat 
+          </div>
+        </h2>
+        <div class="ui purple inverted menu">
+          <i class="home icon"></i><%= link_to "Home", root_path, class: "item" %>
+            <% if current_user %>
+              <%= link_to "Messages", conversations_path, class: "item" %>
+              <div class="right menu">
+                <%= link_to 'Sign Out', signout_path, class: "item" %>
+              </div>
+            <% else %>
+              <div class="right menu">
+                <%= link_to 'Sign Up', signup_path, class: "item" %>
+                <%= link_to "Sign-In", signin_path, class: "item" %>
+              </div>
+            <% end %>
+        </div>
+
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>
