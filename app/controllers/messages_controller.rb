@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
+    @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
